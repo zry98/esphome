@@ -123,7 +123,7 @@ optional<NexusData> NexusProtocol::decode(RemoteReceiveData src) {
   if (((packet >> 8) & 0b1111) != 0b1111) {
     return {};
   }
-  ESP_LOGD(TAG, "Nexus packet: 0x%09" PRIX64, packet);
+  ESP_LOGV(TAG, "Nexus packet: 0x%09" PRIX64, packet);
 
   out.channel = ((packet >> 24) & 0b11) + 1;
   out.address = (packet >> 28) & 0xFF;
