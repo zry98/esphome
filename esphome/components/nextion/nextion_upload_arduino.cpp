@@ -249,7 +249,7 @@ bool Nextion::upload_tft(uint32_t baud_rate, bool exit_reparse) {
     ESP_LOGV(TAG, "Connection closed");
     return this->upload_end_(false);
   } else {
-    ESP_LOGV(TAG, "File size check passed. Proceeding...");
+    ESP_LOGV(TAG, "File size check passed. Proceeding");
   }
   this->content_length_ = this->tft_size_;
 
@@ -353,7 +353,7 @@ bool Nextion::upload_end_(bool successful) {
   if (successful) {
     ESP_LOGD(TAG, "Restarting ESPHome");
     delay(1500);  // NOLINT
-    arch_restart();
+    App.safe_reboot();
   } else {
     ESP_LOGE(TAG, "Nextion TFT upload failed");
   }
